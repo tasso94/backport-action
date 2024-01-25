@@ -82,16 +82,16 @@ class Backport {
                 const repo = (_b = (_a = payload.repository) === null || _a === void 0 ? void 0 : _a.name) !== null && _b !== void 0 ? _b : this.github.getRepo().repo;
                 const pull_number = this.github.getPullNumber();
                 const mainpr = yield this.github.getPullRequest(pull_number);
-                if (!(yield this.github.isMerged(mainpr))) {
-                    const message = "Only merged pull requests can be backported.";
-                    this.github.createComment({
-                        owner,
-                        repo,
-                        issue_number: pull_number,
-                        body: message,
-                    });
-                    return;
-                }
+                /*if (!(await this.github.isMerged(mainpr))) {
+                  const message = "Only merged pull requests can be backported.";
+                  this.github.createComment({
+                    owner,
+                    repo,
+                    issue_number: pull_number,
+                    body: message,
+                  });
+                  return;
+                }*/
                 const target_branches = this.findTargetBranches(mainpr, this.config);
                 if (target_branches.length === 0) {
                     console.log(`Nothing to backport: no 'target_branches' specified and none of the labels match the backport pattern '${(_c = this.config.labels.pattern) === null || _c === void 0 ? void 0 : _c.source}'`);

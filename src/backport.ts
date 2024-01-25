@@ -87,7 +87,7 @@ export class Backport {
       const pull_number = this.github.getPullNumber();
       const mainpr = await this.github.getPullRequest(pull_number);
 
-      if (!(await this.github.isMerged(mainpr))) {
+      /*if (!(await this.github.isMerged(mainpr))) {
         const message = "Only merged pull requests can be backported.";
         this.github.createComment({
           owner,
@@ -96,7 +96,7 @@ export class Backport {
           body: message,
         });
         return;
-      }
+      }*/
 
       const target_branches = this.findTargetBranches(mainpr, this.config);
       if (target_branches.length === 0) {
